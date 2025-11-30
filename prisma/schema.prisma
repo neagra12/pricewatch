@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  brand       String
+  model       String?
+  category    Category
+  specs       Json
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  prices      Price[]
+  priceHistory PriceHistory[]
+  
+  @@index([category])
+  @@index([brand])
+}
+
+model Price {
+  id          String   @id @default(cuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  retailer    Retailer
+  price       Float
+  url         String
+  inStock     Boolean  @default(true)
+  shippingCost Float?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([productId])
+  @@index([retailer])
+  @@unique([productId, retailer])
+}
+
+model PriceHistory {
+  id          String   @id @default(cuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  retailer    Retailer
+  price       Float
+  recordedAt  DateTime @default(now())
+  
+  @@index([productId, recordedAt])
+  @@index([retailer])
+}
+
+enum Category {
+  LAPTOP
+  HEADPHONE
+  MONITOR
+}
+
+enum Retailer {
+  AMAZON
+  BESTBUY
+  NEWEGG
+  BH_PHOTO
+}
