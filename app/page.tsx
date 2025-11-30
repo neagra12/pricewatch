@@ -159,7 +159,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t mt-24 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center text-gray-600">
-          <p>© 2024 PriceWatch. Built for finding the best electronics deals.</p>
+          <p>© 2025 PriceWatch. Built for finding the best electronics deals by Neeha Agrawal.</p>
         </div>
       </footer>
     </div>
