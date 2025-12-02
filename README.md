@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PriceWatch 💰
 
-## Getting Started
+A modern electronics price comparison platform that helps users find the best deals across multiple retailers. Built with Next.js 15, TypeScript, and PostgreSQL.
 
-First, run the development server:
+![PriceWatch Homepage](https://pricewatch-pi.vercel.app/)
+![Home Page](home.png)
 
+
+## 🚀 Live Demo
+
+[View Live Demo](https://pricewatch-pi.vercel.app/)
+
+## ✨ Features
+
+- **Multi-Retailer Price Comparison** - Compare prices from Best Buy, Amazon, and Newegg
+- **Real-Time Price Tracking** - Automated scraping and price history tracking
+- **Smart Search** - Category-based search across laptops, headphones, and monitors
+- **Price History** - Track price trends over time
+- **Responsive Design** - Beautiful UI that works on all devices
+- **Fast Performance** - Built with Next.js 15 and Turbopack
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- Recharts (data visualization)
+- Lucide React (icons)
+
+**Backend:**
+- Next.js API Routes
+- Prisma ORM
+- PostgreSQL (Supabase)
+- Axios & Cheerio (web scraping)
+
+**Deployment:**
+- Vercel (hosting)
+- Supabase (database)
+
+## 📸 Screenshots
+
+### Homepage
+![Homepage](home.png)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+- PostgreSQL database (or Supabase account)
+
+### Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/neagra12/pricewatch.git
+cd pricewatch
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env` file in the root directory:
+```env
+DATABASE_URL="postgresql://postgres:Neeha%40120@db.uuwwudhmsknyaqbasrkm.supabase.co:5432/postgres"
+```
 
-## Learn More
+4. Set up the database
+```bash
+npx prisma db push
+npx prisma generate
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. Run the development server
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
+```
+pricewatch/
+├── app/
+│   ├── api/           # API routes
+│   ├── products/      # Product detail pages
+│   ├── search/        # Search results page
+│   └── page.tsx       # Homepage
+├── lib/
+│   ├── scrapers/      # Web scrapers for each retailer
+│   └── prisma.ts      # Prisma client
+├── prisma/
+│   └── schema.prisma  # Database schema
+└── components/        # Reusable UI components
+```
 
-## Deploy on Vercel
+## 🔑 Key Features Explained
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Web Scraping
+The app uses Axios and Cheerio to scrape product data from multiple retailers. When scraping is blocked (common with anti-bot measures), it falls back to mock data to demonstrate functionality.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Price Tracking
+Every time a product is scraped, the price is stored in a `PriceHistory` table, enabling price trend analysis over time.
+
+### Smart Product Matching
+Products from different retailers are matched and grouped together, allowing users to compare prices for the same item across multiple stores.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👨‍💻 Author
+
+**Neeha Agrawal**
+- GitHub: [neagra12](https://github.com/neagra12)
+- LinkedIn: [Your LinkedIn](https://linkedin.com/in/neeha-agrawal)
+- Portfolio: [your-portfolio.com](https://neehaportfolio.vercel.app/)
+
+## 🙏 Acknowledgments
+
+- Product images from retailer websites
+- Icons from [Lucide](https://lucide.dev)
+- Inspiration from existing price comparison sites
+
+---
+
+⭐ If you found this project helpful, please give it a star!
